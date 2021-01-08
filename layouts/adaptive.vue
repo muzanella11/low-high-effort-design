@@ -1,8 +1,26 @@
 <template>
   <div class="l-default">
-    <nuxt />
+    <adaptive-layout>
+      <template slot="desktop">
+        <nuxt />
+      </template>
+
+      <template slot="mobile">
+        <nuxt />
+      </template>
+    </adaptive-layout>
   </div>
 </template>
+
+<script>
+import AdaptiveLayout from '~/layouts/adaptive-layout/template-adaptive-layout.vue'
+
+export default {
+  components: {
+    AdaptiveLayout
+  }
+}
+</script>
 
 <style>
 html {
