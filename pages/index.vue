@@ -55,7 +55,7 @@ export default {}
   display: block;
   font-weight: 300;
   font-size: 100px;
-  color: #35495e;
+  color: #35495E;
   letter-spacing: 1px;
 }
 
