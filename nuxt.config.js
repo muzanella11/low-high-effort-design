@@ -1,3 +1,5 @@
+import webpack from 'webpack'
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -12,13 +14,21 @@ export default {
     ]
   },
 
+  /*
+   ** Customize the progress-bar color
+   */
+  loading: { color: '#f40d32' },
+
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    '@/assets/scss/vendor/element-ui.scss',
     '~/assets/scss/main.scss'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '@/plugins/element-ui',
+    { src: '@/plugins/slick', ssr: false }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -40,7 +50,64 @@ export default {
     '@nuxtjs/pwa'
   ],
 
+  /*
+   ** Router config
+   */
+  router: {
+    /*
+     ** Global middlware
+     */
+    middleware: [],
+    /*
+     ** Globally configure <nuxt-link> default exact active class.
+     */
+    linkExactActiveClass: 'active'
+  },
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    /*
+     * Enable thread-loader in webpack building.
+     */
+    parallel: true,
+    /**
+     * Nuxt.js use webpack-bundle-analyzer to let you visualize your bundles and how to optimize them.
+     */
+    analyze: false,
+    /**
+     * If you want to transpile specific dependencies with Babel, you can add them in here.
+     */
+    transpile: [
+      /^element-ui/
+    ],
+    /**
+     * Add webpack plugins
+     */
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
+      })
+    ],
+    /**
+     * Customize Babel configuration for JavaScript and Vue files. .babelrc is ignored by default.
+     */
+    babel: {
+      /**
+       * @param {any} x
+       */
+      presets ({ isServer }) {
+        return [
+          [
+            require.resolve('@nuxt/babel-preset-app'),
+            {
+              buildTarget: isServer ? 'server' : 'client',
+              corejs: { version: 3 }
+            }
+          ]
+        ]
+      }
+    }
   }
 }

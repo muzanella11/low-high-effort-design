@@ -1,6 +1,8 @@
 <template>
-  <footer>
-    footer
+  <footer class="c-footer py-4">
+    <div class="container">
+      footer
+    </div>
   </footer>
 </template>
 
