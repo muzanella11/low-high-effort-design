@@ -1,6 +1,6 @@
 <template>
   <header class="c-header">
-    <b-navbar :toggleable="isMobile" type="light" variant="light" fixed="top">
+    <b-navbar :toggleable="isToggleable" type="light" variant="light" fixed="top">
       <b-container>
         <b-navbar-brand href="/">
           {{ innerTitle }}
@@ -24,7 +24,7 @@
             </b-nav-item>
 
             <b-nav-form class="ml-lg-5">
-              <b-form-input size="sm" class="mr-sm-2" placeholder="Search..." />
+              <b-form-input size="sm" class="mr-sm-2" placeholder="Search global..." />
             </b-nav-form>
           </b-navbar-nav>
 
@@ -42,7 +42,7 @@
               to="/account"
               exact
             >
-              Account
+              Jhon Doe
             </b-nav-item>
           </b-navbar-nav>
         </b-collapse>

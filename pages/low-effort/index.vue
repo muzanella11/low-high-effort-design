@@ -22,13 +22,12 @@
         <div class="main__filters mb-4">
           <div class="row">
             <div
-              class="col-lg-4 col-12 mb-4"
+              class="col-lg-3 col-12 mb-4"
             >
-              <el-input
+              <el-date-picker
                 v-model="entry.keyword"
                 class="w-100"
-                placeholder="Search..."
-                prefix-icon="el-icon-search"
+                placeholder="Pick a day"
               />
             </div>
 

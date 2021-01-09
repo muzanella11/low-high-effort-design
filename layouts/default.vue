@@ -1,7 +1,7 @@
 <template>
   <div class="l-default">
     <!-- Begin Header -->
-    <kal-header :is-mobile="isShownMobile" />
+    <kal-header :is-toggleable="isShownMobile" />
     <!-- End Header -->
 
     <!-- Begin Main -->
@@ -17,7 +17,6 @@
 <script>
 import KalHeader from '~/components/header/template-header.vue'
 import KalFooter from '~/components/footer/template-footer.vue'
-import MixinsLayout from '~/mixins/mixins-layout.js'
 
 export default {
   components: {
@@ -25,13 +24,32 @@ export default {
     KalFooter
   },
 
-  mixins: [
-    MixinsLayout
-  ],
-
   data () {
     return {
-      //
+      isShownMobile: false,
+      innerWidth: 0
+    }
+  },
+
+  mounted () {
+    this.init()
+  },
+
+  methods: {
+    init () {
+      this.innerWidth = window.innerWidth
+
+      this.setIsShownMobile()
+
+      window.addEventListener('resize', () => {
+        this.innerWidth = window.innerWidth
+
+        this.setIsShownMobile()
+      })
+    },
+
+    setIsShownMobile () {
+      this.isShownMobile = this.innerWidth <= (1200 - 1)
     }
   }
 }

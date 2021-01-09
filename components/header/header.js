@@ -1,6 +1,6 @@
 export default {
   props: {
-    isMobile: {
+    isToggleable: {
       type: Boolean,
       default: false
     },
